@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/components/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+</head>
+<body>
+<header id="header" class="header">
+    <div class="header-inner">
+        <div class="blog-name">
+            <h1>space blog</h1>
+        </div>
+        <div class="blog-nav">
+            <a href="#" class="h4">首页</a>
+            <a href="/pages/create" class="h4">新建</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</header>
+<main id="main" class="_main">
+    <div class="main-inner">
+        <content id="content" class="content">
+            <artical>
+                <h1 class="layout-center post-title"><%= title %></h1>
+                <div class="post-meta">
+                    <span class="post-time">发表于2016-07-1</span>
+                    <span class="post-category">分类于<a href="">前端</a></span>
+                    <span class="post-comments-count"><a href="">暂无评论</a></span>
+                </div>
+                <div class="post-body">
+                    <%- body %>
+                </div>
+            </artical>
+        </content>
+    </div>
+</main>
+
+
+</body>
+</html>

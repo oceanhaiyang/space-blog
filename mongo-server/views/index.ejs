@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/components/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+  </head>
+  <body>
+    <header id="header" class="header">
+      <div class="header-inner">
+        <div class="blog-name">
+          <h1>space blog</h1>
+        </div>
+        <div class="blog-nav">
+          <a href="#" class="h4">首页</a>
+          <a href="/pages/create" class="h4">新建</a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </header>
+    <main id="main" class="_main">
+      <div class="main-inner">
+        <content id="content" class="content">
+          <artical>
+            <h1 class="layout-center post-title"><%= title %></h1>
+            <div class="post-meta">
+              <span class="post-time">发表于2016-07-1</span>
+              <span class="post-category">分类于<a href="">前端</a></span>
+              <span class="post-comments-count"><a href="">暂无评论</a></span>
+            </div>
+            <div class="post-body">
+              <h1>写在前面</h1>
+              <p>这是一个使用node + express + mongodb搭建的简单blog</p>
+              <h2>node</h2>
+              <p>node 的实现</p>
+              <code>
+                functin a() {
+                  retur ture;
+                }
+              </code>
+            </div>
+          </artical>
+        </content>
+      </div>
+    </main>
+
+  </body>
+</html>
