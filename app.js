@@ -4,19 +4,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const passport = require('passport');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var LocalStrategy = require('passport-local').Strategy;
 
-var db = mongoose.connect('mongodb://localhost/blog');
-db.connection.on('error', function (error) {
-  console.log('数据库连接失败：' + error);
-});
-db.connection.once('open', function () {
-  console.log('--数据库连接成功--');
-});
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var blog = require('./routes/blog');
-var create = require('./routes/create');
+var account = require('./routes/account');
+var pages = require('./routes/pages');
 var app = express();
 
 // view engine setup
@@ -27,19 +23,29 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/pages/create', function (req, res) {
-  res.render('create');
-});
-app.get('/pages/account/login', function (req, res) {
-  res.render('account/login');
-});
-app.use('/create', create);
-app.use('/creareBlog', blog);
-app.use('/', routes);
+
+app.use(session({
+  name: 'sessionId',
+  secret: "weird sheep",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {maxAge: 14*24*60*60*1000}
+}));
+
+
+
+
+// route
+
+app.use('/pages', pages);
 app.use('/users', users);
+app.use('/account', account);
+app.get('/', function (req, res) {
+  res.render('index');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
