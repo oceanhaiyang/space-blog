@@ -7,38 +7,28 @@
     <link rel="stylesheet" href="/css/account.css">
 </head>
 <body>
-    <div class="main-wrapper" >
-        <p>博客登录</p>
-        <form role="form" class="form-horizontal" action="/account/login" method="POST" id="login-form">
-            <div class="form-group">
-                <label for="username" class="col-sm-3 control-label">用户名</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="username" form="login-form" name="username" placeholder="请输入用户名">
-                </div>
+<div class="main-wrapper">
+    <p>博客登录</p>
+    <form role="form" class="form-horizontal" action="/account/login" method="POST" id="login-form">
+        <div class="form-group">
+            <label for="username" class="col-sm-3 control-label">用户名</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="username" form="login-form" name="username"
+                       placeholder="请输入用户名">
             </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">密码</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="password" form="login-form" name="password" placeholder="请输入密码">
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">密码</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" form="login-form" name="password"
+                       placeholder="请输入密码">
             </div>
-            <button type="submit" class="btn btn-success" form="login-form">登录</button>
-        </form>
-    </div>
+        </div>
+        <button type="submit" class="btn btn-success" form="login-form">登录</button>
+    </form>
+</div>
 
-    <script type="text/javascript" src="/lib/jquery-3.1.0.min.js"></script>
-    <script>
-        function a() {
-            console.log('aaa');
-            $.ajax({
-                url: '/account/login',
-                type: 'post',
-                data: $('form').serialize(),
-                success: function (data) {
-                    console.log(data);
-                }
-            });
-        }
-    </script>
+<script type="text/javascript" src="/lib/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/js/account/login.js"></script>
 </body>
 </html>

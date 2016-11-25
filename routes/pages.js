@@ -17,10 +17,9 @@ router.get('/*', function (req, res, next) {
 
     if (noAuthPages.indexOf(path) !== -1) {
         res.render(path);
-    } else if (authPages.indexOf(path) !== -1){
+    } else if (authPages.indexOf(path) !== -1) {
         if (req.session.sign) {
-            console.log(req.session);
-            res.render(path, {title:　'nihao'});
+            res.render(path);
         } else {
             res.render('account/login');
         }

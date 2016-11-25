@@ -13,7 +13,7 @@ router.post('/login', function (req, res, next) {
     };
     if (body.username === user.username && body.password === user.password) {
         req.session.sign = true;
-        res.render('index', {title: 'index page'});
+        res.render('edit');
     } else {
         res.send('error');
     }
