@@ -13,9 +13,17 @@ router.post('/login', function (req, res, next) {
     };
     if (body.username === user.username && body.password === user.password) {
         req.session.sign = true;
-        res.render('edit');
+
+        var successMsg = {
+            status: 'ok'
+        };
+        res.send(successMsg);
     } else {
-        res.send('error');
+        var errorMsg = {
+            status: 'no auth'
+        };
+
+        res.send(errorMsg);
     }
 });
 

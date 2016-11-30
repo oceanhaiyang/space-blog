@@ -21,7 +21,7 @@ router.get('/*', function (req, res, next) {
         if (req.session.sign) {
             res.render(path);
         } else {
-            res.render('account/login');
+            res.redirect('/pages/account/login');
         }
     } else {
         next();
