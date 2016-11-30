@@ -25,7 +25,7 @@ router.route('/*')
                 console.log('error');
             } else {
                 console.log(blog);
-                redirect('/');
+                res.redirect('/');
             }
         })
     })
