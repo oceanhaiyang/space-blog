@@ -16,7 +16,7 @@
 <body class="pg-index">
     <section class="header">
         <div class="header-container">
-            <div id="homeLog">SPACE BLOG</div>
+            <div id="homeLog"><a href="/">SPACE BLOG</a></div>
             <nav>
                 <ul>
                     <li><a href="">待开发</a></li>
@@ -29,36 +29,24 @@
     <div id="content">
         <section class="post-list">
             <div>
+                <% for(var i = 0; i< blog.length; i++) {%>
                 <article class="post post-width-tags">
                     <header class="post-title">
-                        <a href="">Express 错误处理</a>
+                        <a href="<%= blog[i].post_url %>"><%= blog[i].post_title %></a>
                     </header>
                     <div class="post-meta">
-                        <span>2016-11-18</span>
+                        <span><%= blog[i].meta.createAt %></span>
                     </div>
                     <p class="post-abstract">
-                        express 错误处理
+                        <%= blog[i].post_abstract %>
                     </p>
                     <footer class="post-tags">
-                        <a href="" class="tag">nodejs</a>
-                        <a href="" class="tag">express</a>
+                        <% for(var j = 0; j < blog[i].tags.length; j++){%>
+                            <a href="" class="tag"><%= blog[i].tags[j] %></a>
+                        <%}%>
                     </footer>
                 </article>
-                <article class="post post-width-tags">
-                    <header class="post-title">
-                        <a href="">Express 错误处理</a>
-                    </header>
-                    <div class="post-meta">
-                        <span>2016-11-18</span>
-                    </div>
-                    <p class="post-abstract">
-                        express 错误处理
-                    </p>
-                    <footer class="post-tags">
-                        <a href="" class="tag">nodejs</a>
-                        <a href="" class="tag">express</a>
-                    </footer>
-                </article>
+                <%}%>
             </div>
         </section>
     </div>

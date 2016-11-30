@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="space, blog, 前端">
+    <meta name="description" content="space博客">
+    <meta name="author" content="yimin,2316114920@qq.com">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum=1.0,user-scalable=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title><%= blog.post_title %></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body class="pg-index">
+<section class="header">
+    <div class="header-container">
+        <div id="homeLog"><a href="/">SPACE BLOG</a></div>
+        <nav>
+            <ul>
+                <li><a href="">待开发</a></li>
+                <li><a href="">待开发</a></li>
+                <li><a href="">待开发</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+<div id="content" style="padding: 80px 200px 100px 30px; font-size: 0.16rem; background-color: #fff">
+    <h1><%= blog.post_title %></h1>
+    <%- blog.post_markdown %>
+</div>
+</body>
+</html>
