@@ -21,7 +21,7 @@ var UserSchema = mongoose.Schema({
 
 UserSchema.pre('save', function (next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.lastAt = Date.now();
+        this.meta.createAt = Date.now();
     }
     next();
 });
@@ -34,6 +34,10 @@ UserSchema.statics = {
     findById: function (id, cb) {
         return this
             .findOne({_id: id}).exec(cb);
+    },
+    findByUsername: function (username, cb) {
+      return this
+          .findOne({username: username}).exec(cb);
     },
     createInfo: function (user, cb) {
         return this.create(user, cb);

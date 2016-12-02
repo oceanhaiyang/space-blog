@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const passport = require('passport');
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-var LocalStrategy = require('passport-local').Strategy;
+
 var mongoose = require('mongoose');
 
 var db = mongoose.connect('mongodb://localhost/personalBlog');
@@ -37,18 +36,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
-    name: 'sessionId',
-    secret: "weird sheep",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {maxAge: 14 * 24 * 60 * 60 * 1000}
-}));
-
-
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 // route
-
 app.use('/pages', pages);
 app.use('/users', users);
 app.use('/account', account);
