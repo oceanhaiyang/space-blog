@@ -5,23 +5,132 @@
     <title>数据分析</title>
     <link rel="stylesheet" href="/css/skin-black-light.min.css">
     <link rel="stylesheet" href="/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="/css/analyse.css">
 </head>
-<body class="skin-black-light fixed"  data-spy="scroll" data-taget="#scrollspy">
+<body class="skin-black-light fixed"  data-spy="scroll" data-taget="#scrollspy" style="margin: 0">
     <div class="wrapper">
         <header class="main-header">
-
+            <a href="/" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>S</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Space</b>blog</span>
+            </a>
         </header>
-        <aside class="main-sidebar">
+        <!--<aside class="main-sidebar">
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 851px;"><div class="sidebar" id="scrollspy" style="height: 851px; overflow: hidden; width: auto;">
                     <ul class="nav sidebar-menu">
                         <li class="header">数据分类</li>
                         <li class=""><a href="#introduction"><i class="fa fa-circle-o"></i>访问统计</a></li>
                     </ul>
                 </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 851px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-        </aside>
+        </aside>-->
         <div class="content-wrapper">
 
         </div>
     </div>
+
+    <script type="text/javascript" src="/js/jquery.1.7.1.js"></script>
+    <script>
+        var AdminLTEOptions = {
+            //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
+            //Add slimscroll to navbar menus
+            //This requires you to load the slimscroll plugin
+            //in every page before app.js
+            navbarMenuSlimscroll: true,
+            navbarMenuSlimscrollWidth: "3px", //The width of the scroll bar
+            navbarMenuHeight: "200px", //The height of the inner menu
+            //General animation speed for JS animated elements such as box collapse/expand and
+            //sidebar treeview slide up/down. This options accepts an integer as milliseconds,
+            //'fast', 'normal', or 'slow'
+            animationSpeed: 500,
+            //Sidebar push menu toggle button selector
+            sidebarToggleSelector: "[data-toggle='offcanvas']",
+            //Activate sidebar push menu
+            sidebarPushMenu: true,
+            //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
+            sidebarSlimScroll: true,
+            //Enable sidebar expand on hover effect for sidebar mini
+            //This option is forced to true if both the fixed layout and sidebar mini
+            //are used together
+            sidebarExpandOnHover: false,
+            //BoxRefresh Plugin
+            enableBoxRefresh: true,
+            //Bootstrap.js tooltip
+            enableBSToppltip: true,
+            BSTooltipSelector: "[data-toggle='tooltip']",
+            //Enable Fast Click. Fastclick.js creates a more
+            //native touch experience with touch devices. If you
+            //choose to enable the plugin, make sure you load the script
+            //before AdminLTE's app.js
+            enableFastclick: true,
+            //Control Sidebar Options
+            enableControlSidebar: true,
+            controlSidebarOptions: {
+                //Which button should trigger the open/close event
+                toggleBtnSelector: "[data-toggle='control-sidebar']",
+                //The sidebar selector
+                selector: ".control-sidebar",
+                //Enable slide over content
+                slide: true
+            },
+            //Box Widget Plugin. Enable this plugin
+            //to allow boxes to be collapsed and/or removed
+            enableBoxWidget: true,
+            //Box Widget plugin options
+            boxWidgetOptions: {
+                boxWidgetIcons: {
+                    //Collapse icon
+                    collapse: 'fa-minus',
+                    //Open icon
+                    open: 'fa-plus',
+                    //Remove icon
+                    remove: 'fa-times'
+                },
+                boxWidgetSelectors: {
+                    //Remove button selector
+                    remove: '[data-widget="remove"]',
+                    //Collapse button selector
+                    collapse: '[data-widget="collapse"]'
+                }
+            },
+            //Direct Chat plugin options
+            directChat: {
+                //Enable direct chat by default
+                enable: true,
+                //The button to open and close the chat contacts pane
+                contactToggleSelector: '[data-widget="chat-pane-toggle"]'
+            },
+            //Define the set of colors to use globally around the website
+            colors: {
+                lightBlue: "#3c8dbc",
+                red: "#f56954",
+                green: "#00a65a",
+                aqua: "#00c0ef",
+                yellow: "#f39c12",
+                blue: "#0073b7",
+                navy: "#001F3F",
+                teal: "#39CCCC",
+                olive: "#3D9970",
+                lime: "#01FF70",
+                orange: "#FF851B",
+                fuchsia: "#F012BE",
+                purple: "#8E24AA",
+                maroon: "#D81B60",
+                black: "#222222",
+                gray: "#d2d6de"
+            },
+            //The standard screen sizes that bootstrap uses.
+            //If you change these in the variables.less file, change
+            //them here too.
+            screenSizes: {
+                xs: 480,
+                sm: 768,
+                md: 992,
+                lg: 1200
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/app.min.js"></script>
 </body>
 </html>
