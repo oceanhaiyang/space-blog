@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var AnalyseSchema = mongoose.Schema({
   ip: String,
+  city: String,
   meta: {
     visitAt: {
       type: Date,
