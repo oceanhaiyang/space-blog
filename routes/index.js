@@ -9,7 +9,7 @@ router.get('/', getIndex);
 function getIndex(req, res) {
     var ip = req.ip.match(/\d+\.\d+\.\d+\.\d+/);
     var getAdressUri = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=' + ip;
-    request.get(getAdressUri, function (err, body, response) {
+    request.get(getAdressUri, function (err, response, body) {
         if (err) {
             console.log(err);
         } else {
