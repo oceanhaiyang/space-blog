@@ -2,7 +2,7 @@ var express = require('express');
 var post = require('../db/post');
 var router = express.Router();
 var analyse = require('../db/analyse');
-var reuqest = require('request');
+var request = require('request');
 /* GET home page. */
 router.get('/', getIndex);
 
