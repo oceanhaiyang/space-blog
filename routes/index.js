@@ -6,26 +6,25 @@ var analyse = require('../db/analyse');
 router.get('/', getIndex);
 
 function getIndex(req, res) {
-  console.log('aaaa');
-  var ip = req.ip;
-  var ips = {
-    ip: ip
-  };
-  analyse.createInfo(ips, function (err, cb) {
-    if (err) {
-      console.log(err);
-    } else {
-      // post
-      console.log('aaa');
-      post.find({}, null, {skip: 0, limit:10}, function (err, blog) {
+    var ip = req.ip.match(/\d+\.\d+\.\d+\.\d+/);
+
+    var ips = {
+        ip: ip
+    };
+    analyse.createInfo(ips, function (err, cb) {
         if (err) {
-          console.log(err);
+            console.log(err);
         } else {
-          res.render('index', {blog: blog});
+            // post
+            post.find({}, null, {skip: 0, limit: 10}, function (err, blog) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.render('index', {blog: blog});
+                }
+            });
         }
-      });
-    }
-  });
+    });
 }
 
 module.exports = router;
