@@ -4,9 +4,23 @@
 var mongoose = require('mongoose');
 
 var AnalyseSchema = mongoose.Schema({
-    ip: String
+  ip: String,
+  meta: {
+    visitAt: {
+      type: Date,
+      default: Date.now()
+    }
+  }
 });
-AnalyseSchema.statics= {
+
+AnalyseSchema.pre('save', function (next) {
+  if (this.isNew) {
+    this.meta.visitAt = Date.now();
+  }
+  next();
+});
+
+AnalyseSchema.statics = {
   createInfo: function (analyse, cb) {
     return this.create(analyse, cb);
   },
