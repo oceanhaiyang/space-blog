@@ -24,5 +24,13 @@ router.get('/', function (req, res) {
         }
     });
 });
+router.get('/data', function (req, res) {
+    visit.findAll(function (err, cb) {
+        if (err) {
+            console.log(err);
+        } else {
 
+        }
+    })
+});
 module.exports = router;
