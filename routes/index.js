@@ -13,6 +13,7 @@ function getIndex(req, res) {
         if (err) {
             console.log(err);
         } else {
+            console.log(body);
             try {
                 body = JSON.parse(body);
             } catch (err) {
