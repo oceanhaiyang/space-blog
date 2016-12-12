@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>数据分析</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/skin-black-light.min.css">
     <link rel="stylesheet" href="/css/AdminLTE.min.css">
     <link rel="stylesheet" href="/css/analyse.css">
@@ -17,21 +18,49 @@
                 <span class="logo-lg"><b>Space</b>blog</span>
             </a>
         </header>
-        <!--<aside class="main-sidebar">
+        <aside class="main-sidebar">
             <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 851px;"><div class="sidebar" id="scrollspy" style="height: 851px; overflow: hidden; width: auto;">
                     <ul class="nav sidebar-menu">
                         <li class="header">数据分类</li>
                         <li class=""><a href="#introduction"><i class="fa fa-circle-o"></i>访问统计</a></li>
                     </ul>
                 </div><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 851px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-        </aside>-->
+        </aside>
         <div class="content-wrapper">
+            <section class="content-header">
+                <h1>网站访问数据统计</h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="glyphicon glyphicon-asterisk"></i></span>
 
+                            <div class="info-box-content">
+                                <span class="info-box-text">访问总量</span>
+                                <span class="info-box-number"><%= watchNum %></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="glyphicon glyphicon-user"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">访问人数</span>
+                                <span class="info-box-number"><%= person %></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
-    <script type="text/javascript" src="/js/jquery.1.7.1.js"></script>
-    <script>
+    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+   <!-- <script>
         var AdminLTEOptions = {
             //Activate sidebar slimscroll if the fixed layout is set (requires SlimScroll Plugin)
             //Add slimscroll to navbar menus
@@ -130,7 +159,8 @@
                 lg: 1200
             }
         };
-    </script>
+    </script>-->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/app.min.js"></script>
 </body>
 </html>

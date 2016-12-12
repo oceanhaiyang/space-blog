@@ -6,15 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const passport = require('passport');
 var session = require('express-session');
+var analyse = require('./db/analyse');
 
 var mongoose = require('mongoose');
 
 var db = mongoose.connect('mongodb://localhost/personalBlog');
 db.connection.on('error', function (error) {
-    console.log('数据库连接失败：' + error);
+  console.log('数据库连接失败：' + error);
 });
 db.connection.once('open', function () {
-    console.log('--数据库连接成功--');
+  console.log('--数据库连接成功--');
 });
 
 var index = require('./routes/index');
@@ -36,10 +37,31 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 // route
+// 访问统计
+app.get('/analyse', function (req, res) {
+  analyse.count({}, function (err, num) {
+    if (err) {
+      console.log(err);
+    } else {
+      analyse.find({}, function (err, sa) {
+        let set = new Set();
+        sa.forEach(function (item) {
+          set.add(item.ip);
+        });
+        let person = set.size;
+        res.render('analyse/index', {
+          watchNum: num,
+          person: person
+        });
+      });
+
+    }
+  });
+});
 app.use('/pages', pages);
 app.use('/users', users);
 app.use('/account', account);
@@ -48,9 +70,9 @@ app.get('/', index);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // error handlers
@@ -58,23 +80,23 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 

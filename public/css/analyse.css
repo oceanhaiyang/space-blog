@@ -1,3 +1,6 @@
-.content-wrapper{
-    margin: 0;
+a{
+    text-decoration: none;
+}
+.main-header .logo{
+    box-sizing: border-box;
 }

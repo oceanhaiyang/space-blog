@@ -6,8 +6,7 @@ var router = express.Router();
 
 var noAuthPages = [
     'account/login',
-    'index',
-    'analyse/index'
+    'index'
 ];
 
 var authPages = [
