@@ -1,55 +1,69 @@
 /* reset some style */
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Hiragino Sans GB', "Microsoft Yahei", "Microsoft YaHei", sans-serif;
 }
+
 ul, li {
     list-style: none;
 }
+
 a {
     text-decoration: none;
     color: #32D3C3;
 }
+
 /* public style */
-html{
+html {
     font-size: 100px;
 
 }
-.pg-index{
+
+.pg-index {
     background-color: #f4f4f4;
 }
+
 /* header */
-.header{
+.header {
     width: 100%;
     height: 66px;
     position: fixed;
     z-index: 99;
     background: rgba(0, 0, 0, 0.9);
 }
-.header .header-container{
+
+.header .header-container {
     width: 1200px;
     margin: 0 auto;
 }
 
-.header #homeLog{
+.header #homeLog {
     color: #fff;
     line-height: 66px;
-    font-size: 24px;
+    font-size: 0.24rem;
     float: left;
 }
-.header #homeLog a{
+
+.header #homeLog a {
     color: #fff;
+    display: block;
+    text-align: center;
 }
-.header nav{
+.header .nav-bar-btn{
+    display: none;
+}
+.header nav {
     float: right;
 
 }
+
 .header li {
     float: left;
     margin-left: 24px;
 }
-.header ul li a{
+
+.header ul li a {
     color: #999999;
     display: inline-block;
     height: 66px;
@@ -57,43 +71,46 @@ html{
     font-size: 16px;
 }
 
-.header a:hover{
+.header a:hover {
     text-decoration: none;
     color: #fff;
 }
 
 /* list */
-#content{
+#content {
     padding-top: 66px;
     overflow: hidden;
     width: 1200px;
     margin: 0 auto;
 }
-.post-list{
+
+.post-list {
     /*margin: 0.12rem 0.5rem 0;*/
 }
 
-.post{
+.post {
     margin-top: 0.2rem;
     padding: 0.24rem 0.3rem 0.04rem;
     border: 2px solid #fff;
     background-color: #fff;
 }
-.post .post-title{
+
+.post .post-title {
     font-size: 0.2rem;
     line-height: 0.29rem;
 }
-.post-width-tags a{
+
+.post-width-tags a {
     color: #2a2935;
 }
 
-.post-width-tags .post-meta{
+.post-width-tags .post-meta {
     padding: 0.115rem 0 0;
     color: #AAA;
     font-size: 0.12rem;
 }
 
-.post .post-abstract{
+.post .post-abstract {
     padding: 0.2rem 0;
     border-bottom: 1px dashed #DDD;
     line-height: 0.22rem;
@@ -102,13 +119,13 @@ html{
     margin: 0;
 }
 
-.post .post-tags{
+.post .post-tags {
     display: block;
     margin: 0.2rem 0;
     font-size: 0;
 }
 
-.post .tag{
+.post .tag {
     font-size: 0.12rem;
     text-decoration: none;
     line-height: 0.12rem;
@@ -118,4 +135,52 @@ html{
     border: 1px solid #32D3C3;
     padding: 0.05rem 0.09rem;
     margin: 0.04rem 0.04rem 0 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .header .header-container {
+        width: 100%;
+        padding: 0 0.12rem;
+        box-sizing: border-box;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+    .post-list {
+        margin: 0.12rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .header #homeLog {
+        width: 100%;
+        font-size: 0.2rem;
+    }
+    .header nav {
+        display: none;
+    }
+    .header .nav-bar-btn{
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0.12rem;
+        width: 20px;
+        height: 66px;
+        border: none;
+        background-color: transparent;
+        background: url('/img/menu.png') right center no-repeat;
+        outline: none;
+    }
+
+    .post{
+        padding: 0.1rem 0.12rem 0.04rem;
+    }
+    .post .post-abstract {
+        padding: 0.1rem 0;
+    }
+    .post .post-tags{
+        margin: 0.1rem 0;
+    }
 }
