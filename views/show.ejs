@@ -5,40 +5,44 @@
     <meta name="keywords" content="space, blog, 前端">
     <meta name="description" content="space博客">
     <meta name="author" content="yimin,2316114920@qq.com">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum=1.0,user-scalable=1.0">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,user-scalable=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <title><%= blog.post_title %></title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/show.css">
 </head>
 <body class="pg-index">
-<section class="header">
-    <div class="header-container">
-        <div id="homeLog"><a href="/">SPACE BLOG</a></div>
-        <nav>
-            <ul>
-                <li><a href="">待开发</a></li>
-                <li><a href="">待开发</a></li>
-                <li><a href="/analyse">数据统计</a></li>
-            </ul>
-        </nav>
+<% include ./layout/header %>
+<article class="detail_post" style="">
+    <header class="article_title">
+        <h1 class="title"><%= blog.post_title %></h1>
+    </header>
+    <p class="info"></p>
+    <div class="article_content">
+        <%- blog.post_markdown %>
     </div>
-</section>
-<div id="content" style="padding: 80px 200px 100px 30px; font-size: 0.16rem; background-color: #fff">
-    <h1><%= blog.post_title %></h1>
-    <%- blog.post_markdown %>
-</div>
+</article>
+
+
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-88632871-1', 'auto');
     ga('send', 'pageview');
-
 </script>
 </body>
 </html>
