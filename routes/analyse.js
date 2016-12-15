@@ -34,7 +34,6 @@ router.get('/visit_position', function (req, res) {
                 city: '北京',
                 value: 0
             }];
-            console.log(cb);
             cb.forEach(function (visit) {
                 var cityName = visit.city;
                 data.forEach(function (item) {
