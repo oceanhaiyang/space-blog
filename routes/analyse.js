@@ -25,7 +25,7 @@ router.get('/', function (req, res) {
     });
 });
 router.get('/visit_position', function (req, res) {
-    visit.findAll(function (err, cb) {
+    visit.find({}, function (err, cb) {
         if (err) {
             console.log(err);
         } else {
