@@ -24,12 +24,37 @@ router.get('/', function (req, res) {
         }
     });
 });
-router.get('/data', function (req, res) {
+router.get('/visit_position', function (req, res) {
     visit.findAll(function (err, cb) {
         if (err) {
             console.log(err);
         } else {
+            var result;
+            var data = [{
+                city: '北京',
+                value: 0
+            }];
+            console.log(cb);
+            cb.forEach(function (visit) {
+                var cityName = visit.city;
+                data.forEach(function (item) {
+                    if (item.hasOwnProperty(cityName)) {
+                        item[value] += 1;
+                    }
+                    else {
+                        data.push({
+                            city: cityName,
+                            value: 0
+                        })
+                    }
+                })
+            });
 
+            result = {
+                data: data,
+                status: 'ok'
+            };
+            res.send(result);
         }
     })
 });
