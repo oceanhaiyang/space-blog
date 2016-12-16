@@ -4,12 +4,10 @@
 var analyse = (function () {
 
     return {
-        setMap: function () {
+        setMap: function (data) {
             // 基于准备好的dom，初始化echarts实例
             var that = this;
             var myChart = echarts.init(document.getElementById('map'));
-            var data = that.getCities();
-            console.log(data);
             var convertData = function (data) {
                 var res = [];
                 for (var i = 0; i < data.length; i++) {
@@ -107,6 +105,7 @@ var analyse = (function () {
             myChart.setOption(option);
         },
         getCities: function () {
+            var that = this;
             $.ajax({
                 url: '/analyse/visit_position',
                 success: function (json) {
@@ -125,8 +124,7 @@ var analyse = (function () {
                             value: data[i]
                         })
                     }
-                    console.log(result);
-                    return result;
+                    that.setMap(result);
                 }
             })
         }
