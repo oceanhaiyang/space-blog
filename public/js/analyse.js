@@ -110,7 +110,24 @@ var analyse = (function () {
             $.ajax({
                 url: '/analyse/visit_position',
                 success: function (json) {
-                    return json.data;
+                    var data = [{
+                        city: '北京',
+                        value: 0
+                    }];
+                    json.data.forEach(function (cities) {
+                        data.forEach(function (obj) {
+                            if (obj.hasOwnProperty(cities)) {
+                                obj[value] += 1;
+                            } else {
+                                data.push({
+                                    city: cities,
+                                    value: 0
+                                });
+                            }
+                        })
+                    });
+                    console.log(data);
+                    return data;
                 }
             })
         }

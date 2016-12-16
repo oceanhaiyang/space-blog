@@ -33,9 +33,10 @@ router.get('/visit_position', function (req, res) {
 
             var cities = [];
             cb.forEach(function (visit) {
-                cities.push(visit.city);
+                if (visit.city) {
+                    cities.push(visit.city);
+                }
             });
-
             result = {
                 data: cities,
                 status: 'ok'
