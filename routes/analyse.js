@@ -34,21 +34,23 @@ router.get('/visit_position', function (req, res) {
                 city: '北京',
                 value: 0
             }];
+            var cities = [];
             cb.forEach(function (visit) {
-                var cityName = visit.city;
-                data.forEach(function (item) {
-                    if (item.hasOwnProperty(cityName)) {
-                        item[value] += 1;
+                cities.push(visit.city);
+            });
+            cities.forEach(function (city) {
+                data.forEach(function (obj) {
+                    if(obj.hasOwnProperty(city)) {
+                        obj[value] += 1;
                     }
                     else {
                         data.push({
-                            city: cityName,
+                            city: city,
                             value: 0
-                        })
+                        });
                     }
                 })
             });
-
             result = {
                 data: data,
                 status: 'ok'
