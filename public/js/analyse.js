@@ -131,4 +131,4 @@ var analyse = (function () {
     }
 })();
 
-analyse.setMap();
+analyse.getCities();
