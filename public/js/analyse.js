@@ -110,21 +110,13 @@ var analyse = (function () {
             $.ajax({
                 url: '/analyse/visit_position',
                 success: function (json) {
-                    var data = [{
-                        city: '北京',
-                        value: 0
-                    }];
+                    var data = {};
                     json.data.forEach(function (cities) {
-                        data.forEach(function (obj) {
-                            if (obj.hasOwnProperty(cities)) {
-                                obj[value] += 1;
-                            } else {
-                                data.push({
-                                    city: cities,
-                                    value: 0
-                                });
-                            }
-                        })
+                       if (data.hasOwnProperty(cities)) {
+                           data[cities] += 1;
+                       } else {
+                           data[cities] = 0;
+                       }
                     });
                     console.log(data);
                     return data;
