@@ -115,9 +115,16 @@ var analyse = (function () {
                        if (data.hasOwnProperty(cities)) {
                            data[cities] += 1;
                        } else {
-                           data[cities] = 0;
+                           data[cities] = 1;
                        }
                     });
+                    var result = [];
+                    for (i in data) {
+                        result.push({
+                            name: i,
+                            value: data[i]
+                        })
+                    }
                     console.log(data);
                     return data;
                 }
