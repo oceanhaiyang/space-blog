@@ -30,29 +30,14 @@ router.get('/visit_position', function (req, res) {
             console.log(err);
         } else {
             var result;
-            var data = [{
-                city: '北京',
-                value: 0
-            }];
+
             var cities = [];
             cb.forEach(function (visit) {
                 cities.push(visit.city);
             });
-            cities.forEach(function (city) {
-                data.forEach(function (obj) {
-                    if(obj.hasOwnProperty(city)) {
-                        obj[value] += 1;
-                    }
-                    else {
-                        data.push({
-                            city: city,
-                            value: 0
-                        });
-                    }
-                })
-            });
+
             result = {
-                data: data,
+                data: cities,
                 status: 'ok'
             };
             res.send(result);
