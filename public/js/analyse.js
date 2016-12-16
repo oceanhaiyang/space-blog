@@ -125,8 +125,8 @@ var analyse = (function () {
                             value: data[i]
                         })
                     }
-                    console.log(data);
-                    return data;
+                    console.log(result);
+                    return result;
                 }
             })
         }
