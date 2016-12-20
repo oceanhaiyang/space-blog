@@ -51,7 +51,7 @@ var analyse = (function () {
                         coordinateSystem: 'geo',
                         data: convertData(data),
                         symbolSize: function (val) {
-                            return val[2] / 10;
+                            return val[2];
                         },
                         label: {
                             normal: {
@@ -77,7 +77,7 @@ var analyse = (function () {
                             return b.value - a.value;
                         }).slice(0, 6)),
                         symbolSize: function (val) {
-                            return val[2] / 10;
+                            return val[2];
                         },
                         showEffectOn: 'render',
                         rippleEffect: {

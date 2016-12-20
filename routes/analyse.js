@@ -25,12 +25,12 @@ router.get('/', function (req, res) {
     });
 });
 router.get('/visit_position', function (req, res) {
-    visit.find({}, function (err, cb) {
+    visit.find({city: 1}, function (err, cb) {
         if (err) {
             console.log(err);
         } else {
             var result;
-
+            console.log(cb);
             var cities = [];
             cb.forEach(function (visit) {
                 if (visit.city) {
@@ -44,5 +44,27 @@ router.get('/visit_position', function (req, res) {
             res.send(result);
         }
     })
+});
+router.get('/visit_num', function (req, res) {
+   visit.find({}, function (err, cb) {
+       var data;
+       if (err) {
+           console.log(err);
+       } else {
+           data = [];
+           cb.forEach(function (item) {
+               var date = new Date(item.meta.visitAt);
+               var year = date.getYear();
+               var month = date.getMonth()+1;
+               var day = date.getDate();
+
+               data.push([year, month, day].join('-'));
+           });
+
+           res.send({
+               data: data
+           });
+       }
+   })
 });
 module.exports = router;
