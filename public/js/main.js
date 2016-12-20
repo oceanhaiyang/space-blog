@@ -16,8 +16,13 @@ var main = (function () {
                     hasMenu = false;
                 }
             });
+        },
+        initStyle: function () {
+            var contentHeight = $(window).height() - $('#mainFooter').height();
+            $('#content').css('min-height', contentHeight);
         }
     };
 })();
 
 main.showMenu();
+main.initStyle();
