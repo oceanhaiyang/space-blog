@@ -7,54 +7,58 @@ var router = express.Router();
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
-passport.use(new Strategy(
-    function (username, passwod, cb) {
+passport.use('local', new Strategy(
+    function (username, passwod, done) {
         User.findByUsername(username, function (err, user) {
+            console.log(user);
             if (err) {
-                return cb(err);
+                return done(err);
             }
             if (!user) {
-                return cb(null, false);
+                return done(null, false);
             }
             if (user.password != passwod) {
-                return cb(null, false);
+                return done(null, false);
             }
-            return cb(null, user);
+            return done(null, user);
         })
     }));
 
-passport.serializeUser(function (user, cb) {
-   cb(null, user._id);
+passport.serializeUser(function (user, callback) {
+    callback(null, user._id);
 });
 
 passport.deserializeUser(function (id, cb) {
-   user.findById(id, function (err, user) {
-       if (err) {
-           return cb(err);
-       }
-       cb(null, user);
-   })
+    User.findById(id, function (err, user) {
+        if (err) {
+            console.log(err);
+            return cb(err);
+        }
+        cb(null, user);
+    })
 });
 
-router.post('/login', function (req, res, next) {
-    var body = req.body;
-
-
-    if (body.username === user.username && body.password === user.password) {
-        req.session.sign = true;
-
-        var successMsg = {
-            status: 'ok'
-        };
-        res.send(successMsg);
-    } else {
-        var errorMsg = {
-            status: 'no auth'
-        };
-
-        res.send(errorMsg);
-    }
+router.post('/login', passport.authenticate('local', {session: true}), function (req, res, next) {
+    res.send({status: 'ok'});
 });
 
+router.get('/edit',
+    function (req, res) {
+        if (req.user) {
+            res.render('edit');
+        }
+        else {
+            res.redirect('/pages/account/login');
+        }
+    });
 
+router.get('/admin',
+    function (req, res) {
+        if (req.user) {
+            res.render('admin/index');
+        }
+        else {
+            res.redirect('/pages/account/login');
+        }
+    });
 module.exports = router;

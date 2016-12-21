@@ -4,4 +4,5 @@
 
 var config = {};
 
-//
+// 图片存储路径
+config.fileStoragePath = 'D:\\images';

@@ -18,7 +18,7 @@ var account = (function () {
                 success: function (json) {
                     console.log(json.status);
                     if (json.status === 'ok') {
-                        window.location.href = '/pages/edit';
+                        window.location.href = '/account/edit';
                     } else {
                         alert('密码错误');
                     }
