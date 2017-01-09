@@ -21,7 +21,6 @@ db.connection.once('open', function () {
 var index = require('./routes/index');
 var users = require('./routes/users');
 var account = require('./routes/account');
-var pages = require('./routes/pages');
 var post = require('./routes/post');
 var analyse = require('./routes/analyse');
 var api = require('./routes/api');
@@ -48,7 +47,6 @@ app.use(passport.session());
 // route
 // 访问统计
 app.use('/analyse', analyse);
-app.use('/pages', pages);
 app.use('/users', users);
 app.use('/account', account);
 app.use('/post', post);

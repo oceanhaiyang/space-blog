@@ -11,6 +11,7 @@ var account = (function () {
             });
         },
         loginAjax: function () {
+            var redirectUri = Url.queryString('redirect');
             $.ajax({
                 url: '/account/login',
                 type: 'post',
@@ -18,7 +19,7 @@ var account = (function () {
                 success: function (json) {
                     console.log(json.status);
                     if (json.status === 'ok') {
-                        window.location.href = '/account/edit';
+                        window.location.href = redirectUri;
                     } else {
                         alert('密码错误');
                     }
