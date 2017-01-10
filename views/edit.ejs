@@ -13,27 +13,26 @@
         <form action="/post" method="post" id="postForm"></form>
         <div class="form-group">
             <label for="title">文章标题：</label>
-            <input type="text" name="post_title" form="postForm" placeholder="title" class="form-control">
-
+            <input type="text" name="post_title" form="postForm" placeholder="title" class="form-control" value="<%= post.post_title %>">
         </div>
         <div class="form-group">
             <label for="title">文章地址：</label>
-            <input type="text" name="post_url" form="postForm" placeholder="url" class="form-control">
+            <input type="text" name="post_url" form="postForm" placeholder="url" class="form-control" value="<%= post.post_url %>">
         </div>
         <div class="form-group">
             <label for="title">文章标签：</label>
-            <input type="text" name="tags" form="postForm" placeholder="tag" class="form-control">
+            <input type="text" name="tags" form="postForm" placeholder="tag" class="form-control" value="<%= post.post_url %>">
         </div>
         <div class="form-group">
             <label for="title">文章摘要：</label>
-            <textarea rows="5" type="text" name="post_abstract" form="postForm" placeholder="abstract" class="form-control"></textarea>
+            <textarea rows="5" type="text" name="post_abstract" form="postForm" placeholder="abstract" class="form-control"><%= post.post_url %></textarea>
         </div>
 
         <button class="btn btn-success" form="postForm" type="submit">提交</button>
     </div>
     <div class="right-wrapper">
         <div class="middle-section">
-            <textarea name="post_markdown" id="postMarkdown" cols="30" rows="10" form="postForm"></textarea>
+            <textarea name="post_markdown" id="postMarkdown" cols="30" rows="10" form="postForm"><%= post.post_markdown %></textarea>
         </div>
         <div class="right-section" id="showBar">
 

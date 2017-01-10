@@ -3,49 +3,38 @@
  */
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var user = require('../db/user');
+var User = require('../db/user');
 
-// passport setup
-/*passport.use(new passportHttp.BasicStrategy(
-    function(username, password, done) {
-        // config user & pass must be valid
-        if(!config.username || !config.password){
-            return done(null, false);
-        }
-        // check if equals
-        if(username == config.username && password == config.password){
-            return done(null, true);
-        } else{
-            return done(null, false);
-        }
-    }
-));*/
 
-passport.use(new LocalStrategy(callback));
+passport.use('local', new LocalStrategy(
+    function (username, password, callback) {
+        User.findByUsername(username, function (err, user) {
+            if (err) {
+                return callback(err);
+            }
+            if (!user) {
+                return callback(null, false);
+            }
+            if (user.password != password) {
+                return callback(null, false);
+            }
+            return callback(null, user);
+        })
+    }));
 
-function callback(username, password, done) {
-    user.find({username: username}, function (err, user) {
+passport.serializeUser(function (user, callback) {
+    callback(null, user._id);
+});
+
+passport.deserializeUser(function (id, callback) {
+    User.findById(id, function (err, user) {
         if (err) {
-            return done(null, false, {errMsg: '用户不存在'});
+            console.log(err);
+            return callback(err);
         }
-        else {
-            if (user.username !== username || user.password !== password) {
-                return done(null, false, {errMsg: '用户名或密码错误'})
-            }
-            if (user.username === username || user.password === password) {
-                return done(null, user);
-            }
-        }
+        callback(null, user);
     })
-}
-
-passport.serializeUser(function (user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-    done(null, id);
 });
 
 
-model.exports = passport;
+module.exports = passport.authenticate('local', {session: true});

@@ -5,50 +5,26 @@ var express = require('express');
 var User = require('../db/user');
 var post = require('../db/post');
 var router = express.Router();
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var isAuthenticated = require('../passport/index');
 
-passport.use('local', new Strategy(
-    function (username, passwod, done) {
-        User.findByUsername(username, function (err, user) {
-            console.log(user);
-            if (err) {
-                return done(err);
-            }
-            if (!user) {
-                return done(null, false);
-            }
-            if (user.password != passwod) {
-                return done(null, false);
-            }
-            return done(null, user);
-        })
-    }));
-
-passport.serializeUser(function (user, callback) {
-    callback(null, user._id);
-});
-
-passport.deserializeUser(function (id, cb) {
-    User.findById(id, function (err, user) {
-        if (err) {
-            console.log(err);
-            return cb(err);
-        }
-        cb(null, user);
-    })
-});
 router.get('/login', function (req, res, next) {
     res.render('account/login');
 });
-router.post('/login', passport.authenticate('local', {session: true}), function (req, res, next) {
+router.post('/login', isAuthenticated, function (req, res, next) {
     res.send({status: 'ok'});
 });
 
 router.get('/edit',
     function (req, res) {
         if (req.user) {
-            res.render('edit');
+            var post = {
+                post_title: '',
+                post_url: '',
+                post_abstract: '',
+                post_markdown: '',
+                tags:　'',
+            };
+            res.render('edit', {post: post});
         }
         else {
             var redirect = encodeURIComponent('/account/edit');
@@ -58,20 +34,39 @@ router.get('/edit',
 router.route('/edit/:id')
     .get(function (req, res, next) {
         if (!req.user) {
-            next();
+            return next();
         }
         var id = req.params.id;
 
-        post.find({_id: id}, function (err, artical) {
+        post.findOne({_id: id}, function (err, artical) {
             if (err) {
-                next(err);
+                return next(err);
             }
-            if (!artical) {}
+            if (!artical) {
+                var result = {
+                    status: 'failed',
+                    err_msg: '没有查到此文章'
+                };
+                res.send(result);
+            }
+            console.log(artical);
+            res.render('edit', {post: artical});
 
         });
     })
     .put(function (req, res, next) {
+        var putId = req.param.id;
+        var newPost = req.body;
+        if (!req.user) {
+            return next();
+        }
 
+        post.updateInfo(putId, newPost, function (err, sucess) {
+            if (err) {
+                return next(err);
+            }
+            console.log(success);
+        })
     })
     .post(function (req, res, next) {
 
@@ -118,7 +113,7 @@ function dateFormat(date) {
     var year = date.getYear() + 1900,
         month = date.getMonth() + 1,
         day = date.getDate();
-    console.log(year);
+
     return [year, month, day].map(toStr).join('-');
 }
 module.exports = router;
