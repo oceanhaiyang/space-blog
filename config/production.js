@@ -6,3 +6,5 @@ var config = {};
 // 图片存储路径
 config.fileStoragePath = '/home/images';
 
+
+module.exports = config;

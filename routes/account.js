@@ -2,10 +2,10 @@
  * Created by minyi on 2016/11/22.
  */
 var express = require('express');
-var User = require('../db/user');
 var post = require('../db/post');
 var router = express.Router();
 var isAuthenticated = require('../passport/index');
+var api = require('../api/index');
 
 router.get('/login', function (req, res, next) {
     res.render('account/login');
@@ -14,106 +14,104 @@ router.post('/login', isAuthenticated, function (req, res, next) {
     res.send({status: 'ok'});
 });
 
-router.get('/edit',
-    function (req, res) {
-        if (req.user) {
-            var post = {
-                post_title: '',
-                post_url: '',
-                post_abstract: '',
-                post_markdown: '',
-                tags:　'',
-            };
-            res.render('edit', {post: post});
-        }
-        else {
-            var redirect = encodeURIComponent('/account/edit');
-            res.redirect('/account/login?redirect=' + redirect);
-        }
-    });
-router.route('/edit/:id')
-    .get(function (req, res, next) {
-        if (!req.user) {
-            return next();
-        }
-        var id = req.params.id;
+router.route('/edit')
+    .get(getEditMiddleware)
+    .put(putArticleMiddleware)
+    .post(postArticleMiddleware);
 
-        post.findOne({_id: id}, function (err, artical) {
-            if (err) {
-                return next(err);
-            }
-            if (!artical) {
-                var result = {
-                    status: 'failed',
-                    err_msg: '没有查到此文章'
-                };
-                res.send(result);
-            }
-            console.log(artical);
-            res.render('edit', {post: artical});
 
+router.get('/admin', getAdminMiddleware);
+
+// get /account/edit?id=id
+function getEditMiddleware(req, res, next) {
+    var article = {
+        post_title: '',
+        post_url: '',
+        post_abstract: '',
+        post_markdown: '',
+        tags: '',
+    };
+
+    if (!req.user) {
+        console.log('no user');
+        var url = req.url;
+        var redirect = encodeURIComponent('/account' + url);
+        return res.redirect('/account/login?redirect=' + redirect);
+    }
+
+    var postId = req.query.id;
+
+    if (!postId) {
+        return res.render('edit', {post: article, update: 'false'});
+    }
+    post.findOne({_id: postId}, function (err, searchArticle) {
+        if (err) {
+            console.log(err);
+            return next(err);
+        }
+        if (!searchArticle) {
+            return res.render('edit', {post: article, update: 'false'});
+        }
+        res.render('edit', {post: searchArticle, update: 'update'});
+    })
+}
+
+// put /account/edit?id=id
+function putArticleMiddleware(req, res, next) {
+    var postId = req.query.id;
+    var article = req.body;
+    console.log(article);
+    console.log(postId);
+    if (!postId) {
+        return next();
+    }
+
+    post.updateInfo(postId, article, function (err, result) {
+        if (err) {
+            return next(err);
+        }
+        res.send(result);
+    })
+}
+
+// post /account/edit?id=id
+function postArticleMiddleware(req, res, next) {
+    var body = req.body;
+    console.log(body);
+    post.createInfo(body, function (err, reslut) {
+        if (err) {
+            return next(err);
+        }
+        res.send({status: 'ok'});
+    })
+}
+
+// get /account/admin
+function getAdminMiddleware(req, res, next) {
+    if (!req.user) {
+        var url = req.url;
+        var redirect = encodeURIComponent('/account' + url);
+        return res.redirect('/account/login?redirect=' + redirect);
+    }
+
+    post.find({}, function (err, posts) {
+        if (err) {
+            console.log(err);
+            return next(err);
+        }
+
+        var post = posts.map(function (artical) {
+            var obj = {};
+            obj.tags = artical.tags.join('');
+            obj.createAt = api.dateFormat(artical.meta.createAt);
+            obj._id = artical._id;
+            obj.post_title = artical.post_title;
+            obj.post_url = artical.post_url;
+
+            return obj;
         });
-    })
-    .put(function (req, res, next) {
-        var putId = req.param.id;
-        var newPost = req.body;
-        if (!req.user) {
-            return next();
-        }
-
-        post.updateInfo(putId, newPost, function (err, sucess) {
-            if (err) {
-                return next(err);
-            }
-            console.log(success);
-        })
-    })
-    .post(function (req, res, next) {
-
+        res.render('admin/index', {post: post});
     });
-
-
-router.get('/admin',
-    function (req, res, next) {
-        if (req.user) {
-            post.find({}, function (err, posts) {
-                if (err) {
-                    next(err);
-                }
-                else {
-                    var post = posts.map(function (artical) {
-                        var obj = {};
-                        obj.tags = artical.tags.join('');
-                        obj.createAt = dateFormat(artical.meta.createAt);
-                        obj._id = artical._id;
-                        obj.post_title = artical.post_title;
-                        obj.post_url = artical.post_url;
-
-                        return obj;
-                    });
-                    res.render('admin/index', {post: post});
-                }
-            });
-
-        }
-        else {
-            var redirect = encodeURIComponent('/account/admin');
-            res.redirect('/account/login?redirect=' + redirect);
-        }
-    });
-
-function toStr(n) {
-    n = n.toString();
-    return n[1] ? n : '0' + n;
 }
 
-function dateFormat(date) {
-    date = new Date(date);
-
-    var year = date.getYear() + 1900,
-        month = date.getMonth() + 1,
-        day = date.getDate();
-
-    return [year, month, day].map(toStr).join('-');
-}
 module.exports = router;

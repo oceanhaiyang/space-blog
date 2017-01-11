@@ -5,4 +5,7 @@
 var config = {};
 
 // 图片存储路径
-config.fileStoragePath = 'D:\\images';
+config.fileStoragePath = '../blog-images';
+
+
+module.exports = config;

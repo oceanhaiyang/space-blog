@@ -12,12 +12,10 @@ var admin = (function () {
       var self = this;
       $('._update').on('click', function () {
         var postId = $(this).parent().parent().attr('id');
-        window.location.href = '/account/edit/' + postId;
+        console.log(postId);
+        window.location.href = '/account/edit?id=' + postId;
       });
     },
-    delete: function () {
-
-    }
   }
 })();
 

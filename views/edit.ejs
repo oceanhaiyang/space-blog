@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="/css/edit.css">
 </head>
-<body>
+<body update="<%= update %>">
 <div class="main-container">
     <div class="left-sectin">
         <div class="title h3">在此填写基本信息</div>
@@ -21,14 +21,15 @@
         </div>
         <div class="form-group">
             <label for="title">文章标签：</label>
-            <input type="text" name="tags" form="postForm" placeholder="tag" class="form-control" value="<%= post.post_url %>">
+            <input type="text" name="tags" form="postForm" placeholder="tag" class="form-control" value="<%= post.tags %>">
         </div>
         <div class="form-group">
             <label for="title">文章摘要：</label>
-            <textarea rows="5" type="text" name="post_abstract" form="postForm" placeholder="abstract" class="form-control"><%= post.post_url %></textarea>
+            <textarea rows="5" type="text" name="post_abstract" form="postForm" placeholder="abstract" class="form-control"><%= post.post_abstract %></textarea>
         </div>
 
-        <button class="btn btn-success" form="postForm" type="submit">提交</button>
+        <button class="btn btn-success" type="button" id="submitBtn">提交</button>
+        <code class="img-url" id="imgUrl"></code>
     </div>
     <div class="right-wrapper">
         <div class="middle-section">
@@ -42,6 +43,7 @@
 
 </div>
 <script type="text/javascript" src="/js/lib/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/js/lib/url.min.js"></script>
 <script type="text/javascript" src="/js/lib/marked.js"></script>
 <script type="text/javascript" src="/js/edit.js"></script>
 </body>
