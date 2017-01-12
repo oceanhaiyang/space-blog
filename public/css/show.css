@@ -2,9 +2,9 @@ html{
     font-size: 100px;
 }
 .detail_post{
-    padding: 20px 15px;
+    padding: 20px 20px;
     margin: 80px auto;
-    width: 1200px;
+    width: 1000px;
     background: #fff;
     box-sizing: border-box;
 }
@@ -13,7 +13,7 @@ html{
     padding-top: 0.3rem;
 }
 .title{
-    font-size: 0.28rem;
+    font-size: 0.33rem;
     color: #2A2935;
     text-align: center;
     margin-bottom: 30px;
@@ -44,15 +44,20 @@ html{
 }
 
 .detail_post p{
-    margin: 1em 0;
     color: #666;
-    font-size: 1.16em;
-    word-wrap: break-word;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 25px;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
     .detail_post{
         padding: 0.8rem 0.12rem;
         width: 100%;
         box-sizing: border-box;
     }
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
 }

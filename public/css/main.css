@@ -35,7 +35,7 @@ html {
 }
 
 .header .header-container {
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -81,7 +81,7 @@ html {
 #content {
     padding-top: 66px;
     overflow: hidden;
-    width: 1200px;
+    width: 1000px;
     margin: 0 auto;
     min-height: 100%;
 }
