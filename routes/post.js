@@ -17,24 +17,13 @@ marked.setOptions({
 });
 
 router.route('/*')
-    .post(function (req, res) {
-        var blog = req.body;
-        blog.post_markdown = marked(blog.post_markdown);
-        post.createInfo(blog, function (err, blog) {
-            if (err) {
-                console.log('error');
-            } else {
-                console.log(blog);
-                res.redirect('/');
-            }
-        })
-    })
     .get(function (req, res) {
-        var url = '/post' + req.url;
+        var url = req.url;
         post.findOne({post_url: url}, function (err, blog) {
             if (err) {
                 console.log(err);
             } else {
+                blog.post_markdown = marked(blog.post_markdown);
                 res.render('show', {blog: blog});
             }
         })

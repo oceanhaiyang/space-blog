@@ -1,6 +1,9 @@
+html{
+    font-size: 100px;
+}
 .detail_post{
-    padding: 80px 15px 20px;
-    margin: 0 auto;
+    padding: 20px 15px;
+    margin: 80px auto;
     width: 1200px;
     background: #fff;
     box-sizing: border-box;
@@ -10,8 +13,10 @@
     padding-top: 0.3rem;
 }
 .title{
-    font-size: 0.18rem;
+    font-size: 0.28rem;
     color: #2A2935;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .article__title .info {

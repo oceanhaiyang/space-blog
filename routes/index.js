@@ -44,6 +44,7 @@ function showPosts(req, res, next) {
             obj.createAt = api.dateFormat(blog.meta.createAt);
             obj._id = blog._id;
             obj.post_title = blog.post_title;
+            obj.post_abstract = blog.post_abstract;
             obj.post_url = blog.post_url;
 
             return obj;

@@ -21,7 +21,7 @@
                 <% for(var i = 0; i< blog.length; i++) {%>
                 <article class="post post-width-tags">
                     <header class="post-title">
-                        <a href="<%= blog[i].post_url %>"><%= blog[i].post_title %></a>
+                        <a href="<%= '/post' + blog[i].post_url %>"><%= blog[i].post_title %></a>
                     </header>
                     <div class="post-meta">
                         <span><%= blog[i].createAt %></span>
