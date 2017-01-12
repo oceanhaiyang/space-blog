@@ -61,3 +61,8 @@ h1 {
     font-size: 24px;
     font-weight: bold;
 }
+
+img{
+    max-width: 100%;
+    height: auto;
+}
