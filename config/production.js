@@ -4,7 +4,7 @@
 var config = {};
 
 // 图片存储路径
-config.fileStoragePath = '/home/images';
+config.fileStoragePath = '../blog-images';
 
 
 module.exports = config;
