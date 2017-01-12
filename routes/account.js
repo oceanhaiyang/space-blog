@@ -70,7 +70,7 @@ function putArticleMiddleware(req, res, next) {
         if (err) {
             return next(err);
         }
-        res.send(result);
+        res.send({status: 'ok'});
     })
 }
 

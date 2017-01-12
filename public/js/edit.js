@@ -43,7 +43,7 @@ var edit = (function () {
                     type: method,
                     data: $('#postForm').serialize(),
                     success: function (json) {
-                        if (json.ok) {
+                        if (json.status === 'ok') {
                             window.location.href = '/';
                         }
                     }
