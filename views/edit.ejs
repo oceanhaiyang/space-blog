@@ -35,17 +35,7 @@
         <div class="middle-section">
             <textarea name="post_markdown" id="postMarkdown" form="postForm"><%= post.post_markdown %></textarea>
         </div>
-        <div class="right-section">
-            <header class="floatingheader">
-                <span class="desktop-tabs">Preview</span>
-                <span class="mobile-tabs">
-                    <a href="#" class="active" data-ember-action="1196">Markdown</a>
-                    <a href="#" class="" data-ember-action="1197">Preview</a>
-                </span>
-                <span class="entry-word-count">234 words</span>
-            </header>
-            <div id="showBar" class="entry-preview-content js-entry-preview-content"></div>
-        </div>
+        <div class="right-section" id="showBar"></div>
         <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
