@@ -34,7 +34,7 @@ function getIndex(req, res, next) {
 }
 
 function showPosts(req, res, next) {
-    post.find({}, null, {skip: 0, limit: 10}, function (err, blogs) {
+    post.find({}, null, {skip: 0, limit: 10, sort: {'meta.createAt': -1}}, function (err, blogs) {
         if (err) {
             return next(err);
         }

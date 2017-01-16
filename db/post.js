@@ -14,6 +14,10 @@ var PostSchema = mongoose.Schema({
             type: Date,
             default: Date.now()
         }
+    },
+    view: {
+        type: Number,
+        default: 0
     }
 });
 
@@ -43,6 +47,9 @@ PostSchema.statics = {
     },
     findAll: function (cb) {
         return this.findAll().exec(cb);
+    },
+    viewAdd: function (id, cb) {
+
     }
 };
 

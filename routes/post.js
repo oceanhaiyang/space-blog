@@ -23,8 +23,16 @@ router.route('/*')
             if (err) {
                 console.log(err);
             } else {
-                blog.post_markdown = marked(blog.post_markdown);
-                res.render('show', {blog: blog});
+                blog.view += 1;
+                post.updateInfo(blog._id, {"view": blog.view}, function (err) {
+                    if (err) {
+                        return next(err);
+                    }
+                    blog.post_markdown = marked(blog.post_markdown);
+                    res.render('show', {blog: blog});
+                });
+
+
             }
         })
     });
