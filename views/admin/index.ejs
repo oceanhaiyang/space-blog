@@ -52,6 +52,7 @@
                     <th>路由</th>
                     <th>分类</th>
                     <th>创建时间</th>
+                    <th>浏览量</th>
                     <th>操作</th>
                 </tr>
                 <% for(var i = 0; i < post.length; i++) { %>
@@ -61,6 +62,7 @@
                     <td><%= post[i].post_url %></td>
                     <td><%= post[i].tags %></td>
                     <td><%= post[i].createAt %></td>
+                    <td><%= post[i].view %></td>
                     <td>
                         <button type="button" class="btn btn-success _update">修改</button>
                         <button type="button" class="btn btn-danger _delete">删除</button>
