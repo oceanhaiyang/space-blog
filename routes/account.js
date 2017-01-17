@@ -107,6 +107,7 @@ function getAdminMiddleware(req, res, next) {
             obj._id = artical._id;
             obj.post_title = artical.post_title;
             obj.post_url = artical.post_url;
+            obj.view = artical.view;
 
             return obj;
         });
