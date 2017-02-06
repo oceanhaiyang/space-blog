@@ -24,6 +24,7 @@ var account = require('./routes/account');
 var post = require('./routes/post');
 var analyse = require('./routes/analyse');
 var api = require('./routes/api');
+var tags = require('./routes/tags');
 
 var app = express();
 
@@ -52,6 +53,7 @@ app.use('/users', users);
 app.use('/account', account);
 app.use('/post', post);
 app.use('/api', api);
+app.use('/tags', tags);
 app.get('/', index);
 
 // catch 404 and forward to error handler

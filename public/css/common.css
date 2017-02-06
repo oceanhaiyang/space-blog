@@ -21,3 +21,7 @@ header .nav-wrap:after{
     display:block;
     clear:both;
 }
+
+p {
+    word-wrap: break-word;
+}

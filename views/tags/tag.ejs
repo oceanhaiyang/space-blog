@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=1.0">
+    <title>tags</title>
+    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/tags.css">
+</head>
+<body class="pg-index">
+<% include ../layout/header %>
+<div id="content">
+    <div class="post-list ">
+        <h1 class="title"><%= title %></h1>
+            <section class="post-list">
+                <div>
+                    <% for(var i = 0; i< blog.length; i++) {%>
+                    <article class="post post-width-tags">
+                        <header class="post-title">
+                            <a href="<%= '/post' + blog[i].post_url %>"><%= blog[i].post_title %></a>
+                        </header>
+                        <div class="post-meta">
+                            <span><%= blog[i].createAt %></span>
+                        </div>
+                        <p class="post-abstract">
+                            <%= blog[i].post_abstract %>
+                        </p>
+                        <footer class="post-tags">
+                            <% for(var j = 0; j < blog[i].tags.length; j++){%>
+                            <a href="" class="tag"><%= blog[i].tags[j] %></a>
+                            <%}%>
+                        </footer>
+                    </article>
+                    <%}%>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

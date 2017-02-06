@@ -31,7 +31,7 @@
                     </p>
                     <footer class="post-tags">
                         <% for(var j = 0; j < blog[i].tags.length; j++){%>
-                            <a href="" class="tag"><%= blog[i].tags[j] %></a>
+                            <a href="/tags/<%= blog[i].tags[j] %>" class="tag"><%= blog[i].tags[j] %></a>
                         <%}%>
                     </footer>
                 </article>
