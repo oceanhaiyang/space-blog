@@ -20,6 +20,12 @@ html {
 
 }
 
+p {
+    word-wrap: break-word;
+}
+li {
+    list-style: disc;
+}
 .pg-index {
     background-color: #f4f4f4;
 }
