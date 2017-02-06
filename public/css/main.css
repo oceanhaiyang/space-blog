@@ -23,12 +23,7 @@ html {
 p {
     word-wrap: break-word;
 }
-ul li {
-    list-style: disc;
-}
-ol li {
-    list-style: decimal;
-}
+
 .pg-index {
     background-color: #f4f4f4;
 }
