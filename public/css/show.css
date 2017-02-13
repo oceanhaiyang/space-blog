@@ -51,7 +51,8 @@ html{
 }
 @media screen and (max-width: 1000px) {
     .detail_post{
-        padding: 0.8rem 0.12rem;
+        padding: 0.08rem 0.12rem;
+        margin: 56px 0;
         width: 100%;
         box-sizing: border-box;
     }
@@ -67,9 +68,9 @@ img{
     height: auto;
 }
 
-ul li {
+.detail_post ul li {
     list-style: disc;
 }
-ol li {
+.detail_post ol li {
     list-style: decimal;
 }

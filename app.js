@@ -25,6 +25,7 @@ var post = require('./routes/post');
 var analyse = require('./routes/analyse');
 var api = require('./routes/api');
 var tags = require('./routes/tags');
+var timeLine = require('./routes/timeline');
 
 var app = express();
 
@@ -54,6 +55,7 @@ app.use('/account', account);
 app.use('/post', post);
 app.use('/api', api);
 app.use('/tags', tags);
+app.use('/time-line', timeLine);
 app.get('/', index);
 
 // catch 404 and forward to error handler
