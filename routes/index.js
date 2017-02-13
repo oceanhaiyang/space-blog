@@ -9,28 +9,15 @@ router.get('/', getIndex);
 
 function getIndex(req, res, next) {
     var ip = req.ip.match(/\d+\.\d+\.\d+\.\d+/);
-    var getAdressUri = 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=' + ip;
-    request.get(getAdressUri, function (err, response, body) {
+    var visit = {
+        ip: ip
+    };
+    analyse.createInfo(visit, function (err, success) {
         if (err) {
             return next(err);
         }
-        try {
-            body = JSON.parse(body);
-        } catch (err) {
-            console.log(err);
-        }
-        var city = body.city;
-        var visit = {
-            ip: ip,
-            city: city
-        };
-        analyse.createInfo(visit, function (err, success) {
-            if (err) {
-                return next(err);
-            }
-            showPosts(req, res, next);
-        })
-    });
+        showPosts(req, res, next);
+    })
 }
 
 function showPosts(req, res, next) {
